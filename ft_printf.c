@@ -13,6 +13,19 @@
 #include <stdio.h>
 #include <unistd.h>
 
+int	ft_putstr_fd(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return (i);
+}
+
 int	disp_char(va_list args)
 {
 	char c = va_arg(args, int);
@@ -22,7 +35,7 @@ int	disp_char(va_list args)
 int disp_string(va_list args)
 {
 	char *string = (char *)va_arg(args, long);
-	return (write("%s", string));
+	return (ft_putstr_fd(string));
 }
 
 int	ft_printf(const char *s, ...)
