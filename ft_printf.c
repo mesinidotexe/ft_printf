@@ -12,19 +12,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
-
-int	ft_putstr_fd(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	return (i);
-}
+#include "temp.h"
 
 int	disp_char(va_list args)
 {
@@ -35,8 +23,32 @@ int	disp_char(va_list args)
 int disp_string(va_list args)
 {
 	char *string = (char *)va_arg(args, long);
-	return (ft_putstr_fd(string));
+	return (ft_putstr(string));
 }
+int	disp_integer(va_list args)
+{
+	int nbr;
+
+	nbr = va_arg(args, int);
+	return (ft_putnbr(nbr));
+}
+
+//se for %d, bota essa func pra devolver o numero de digitos
+static int      ft_check_digits(int n)
+{
+        int     digits;
+
+        digits = 1;
+        if (n < 0)
+                n = -n;
+        while (n >= 10)
+        {
+                n = n / 10;
+                digits++;
+        }
+        return (digits);
+}
+
 
 int	ft_printf(const char *s, ...)
 {
