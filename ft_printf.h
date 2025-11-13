@@ -14,6 +14,6 @@ void	ft_putchar(char c);
 int		ft_disp_char(int c);
 int		ft_disp_int(int nbr);
 int		ft_disp_string(char *str);
-int		ft_disp_unint(unsigned int nbr);
+int		ft_disp_unsigned(unsigned int nbr);
 
 #endif
