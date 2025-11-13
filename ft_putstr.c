@@ -1,8 +1,8 @@
-#include "temp.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *s)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (s[i])
