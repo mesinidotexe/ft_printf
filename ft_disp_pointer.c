@@ -12,17 +12,31 @@
 
 #include "ft_printf.h"
 
-int ft_disp_pointer(void *ptr)
+int	ft_putnbr_hex(unsigned int nbr)
 {
-	char *address;
-	int i;
-	
-	address = (char *)&ptr;
+	char	*base;
+	int		i;
+	int		value;
+
 	i = 0;
-	while (address[i])
+	base = "0123456789abcdef";
+	if (nbr >= 16)
 	{
-		write(1, &address, 1);
-		i++;
+		ft_putnbr_hex(nbr / 16);
 	}
+	value = base[nbr % 16];
+	i += write(1, &value, 1);
 	return (i);
+}
+
+int	ft_disp_pointer(unsigned long long nbr)
+{
+	int counter;
+
+	counter = 0;
+	if (!nbr)
+		return (0);
+	counter += write(1, "0x", 2);
+	counter += ft_putnbr_hex(nbr);
+	return (counter);
 }
