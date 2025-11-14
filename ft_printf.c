@@ -27,6 +27,8 @@ int	check_cases(char *s, va_list *args, int i)
 		counter += ft_disp_string(va_arg(*args, char *));
 	if (s[i] == '%' && s[i + 1] == 'u')
 		counter += ft_disp_unsigned(va_arg(*args, unsigned int));
+	if (s[i] == '%' && s[i + 1] == 'p')
+		counter += ft_disp_pointer(va_arg(*args, void *));
 	return (counter);
 }
 int	ft_printf(const char *s, ...)
@@ -58,12 +60,14 @@ int	main(void)
 	char	test2;
 	char	*test3;
 	unsigned int test4;
+	int test5;
 
 	test1 = 5;
 	test2 = 'b';
 	test3 = "abcdefghijklmnopqrstuvwxyz";
 	test4 = 2147483645;
-	ft_printf("Teste pra int: %d :)\nTeste pra char: %c :)\nTeste pra string: %s :)\nTeste pra unsigned: %u :)\n", test1,
-		test2, test3, test4);
+	test5 = 42;
+	ft_printf("Teste pra int: %d :)\nTeste pra char: %c :)\nTeste pra string: %s :)\nTeste pra unsigned: %u :)\nTeste pra pointer: %p :)", test1,
+		test2, test3, test4, &test5);
 	return (0);
 }
