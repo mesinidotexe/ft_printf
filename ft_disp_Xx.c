@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_disp_unsigned.c                                 :+:      :+:    :+:   */
+/*   ft_disp_x.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmesini- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/13 21:34:25 by vmesini-          #+#    #+#             */
-/*   Updated: 2025/11/13 21:34:29 by vmesini-         ###   ########.fr       */
+/*   Created: 2025/11/14 21:05:52 by vmesini-          #+#    #+#             */
+/*   Updated: 2025/11/14 21:05:58 by vmesini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static int	ft_check_digits(unsigned int n)
+int	ft_putnbr_Xx(unsigned int nbr)
 {
-	int	digits;
+	char	*base;
+	int		i;
+	int		value;
 
-	digits = 1;
-	while (n >= 10)
+	i = 0;
+	base = "0123456789abcdef";
+	if (nbr >= 16)
 	{
-		n = n / 10;
-		digits++;
+		ft_putnbr_hex(nbr / 16);
 	}
-	return (digits);
-}
-
-int	ft_disp_unsigned(unsigned int n)
-{
-	int	return_value;
-
-	return_value = ft_check_digits(n);
-	if (n >= 10)
-	{
-		ft_disp_unsigned(n / 10);
-	}
-	ft_putchar((n % 10) + '0');
-	return (return_value);
+	value = base[nbr % 16];
+	i += write(1, &value, 1);
+	return (i);
 }

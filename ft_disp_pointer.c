@@ -12,18 +12,15 @@
 
 #include "ft_printf.h"
 
-int ft_disp_pointer(void *ptr)
-{
-	unsigned long address;
-	int i;
 
-	i = 0;
-	address = (unsigned long)ptr;
-	while (address >= 0)
-	{
-		address %= 16;
-		address /= 16;
-		i++;
-	}
-	return (i);
+int	ft_disp_pointer(unsigned long long nbr)
+{
+	int counter;
+
+	counter = 0;
+	if (!nbr)
+		return (0);
+	counter += write(1, "0x", 2);
+	counter += ft_putnbr_hex(nbr);
+	return (counter);
 }
