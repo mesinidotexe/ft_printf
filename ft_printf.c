@@ -29,6 +29,8 @@ int	check_cases(char *s, va_list *args, int i)
 		counter += ft_disp_unsigned(va_arg(*args, unsigned int));
 	if (s[i] == '%' && s[i + 1] == 'p')
 		counter += ft_disp_pointer(va_arg(*args, void *));
+	if (s[i] == '%' && s[i + 1] == '%')
+		counter += write(1, '%', 1);
 	return (counter);
 }
 int	ft_printf(const char *s, ...)

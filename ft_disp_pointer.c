@@ -14,14 +14,15 @@
 
 int ft_disp_pointer(void *ptr)
 {
-	char *address;
+	unsigned long address;
 	int i;
-	
-	address = (char *)&ptr;
+
 	i = 0;
-	while (address[i])
+	address = (unsigned long)ptr;
+	while (address >= 0)
 	{
-		write(1, &address, 1);
+		address %= 16;
+		address /= 16;
 		i++;
 	}
 	return (i);
