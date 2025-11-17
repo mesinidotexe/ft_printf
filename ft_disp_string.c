@@ -14,5 +14,7 @@
 
 int	ft_disp_string(char *string)
 {
+	if (string == NULL)
+		return(ft_putstr("(null)"));
 	return (ft_putstr(string));
 }
