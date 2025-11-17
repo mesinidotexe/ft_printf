@@ -9,10 +9,8 @@
 /*   Updated: 2025/11/11 22:04:28 by vmesini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_printf.h"
-#include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
 
 static int	check_cases(char s, va_list *args)
 {

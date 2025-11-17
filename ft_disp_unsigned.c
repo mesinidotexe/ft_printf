@@ -9,6 +9,7 @@
 /*   Updated: 2025/11/13 21:34:29 by vmesini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static int	ft_check_digits(unsigned int n)
