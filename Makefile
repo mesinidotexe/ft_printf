@@ -24,7 +24,7 @@ SRCS = ft_disp_char.c\
 		ft_putchar.c\
 		ft_putnbr.c\
 		ft_putstr.c\
-
+		
 OBJ = $(SRCS:.c=.o)
 
 CC = cc

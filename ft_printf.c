@@ -14,31 +14,28 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int	check_cases(char *s, va_list *args, int i)
+static int	check_cases(char s, va_list *args)
 {
 	int	counter;
 
 	counter = 0;
-	if (s[i] == '%' && s[i + 1] == 'c')
-		counter += ft_disp_char(va_arg(*args, int));
-	if (s[i] == '%' && (s[i + 1] == 'd' || s[i + 1] == 'i'))
-		counter += ft_disp_int(va_arg(*args, int));
-	if (s[i] == '%' && s[i + 1] == 's')
-		counter += ft_disp_string(va_arg(*args, char *));
-	if (s[i] == '%' && s[i + 1] == 'u')
-		counter += ft_disp_unsigned(va_arg(*args, unsigned int));
-	if (s[i] == '%' && s[i + 1] == 'p')
-		counter += ft_disp_pointer(va_arg(*args, unsigned long long));
-	if (s[i] == '%' && s[i + 1] == 'x')
-		counter += ft_disp_x(va_arg(*args, unsigned int));
-	if (s[i] == '%' && s[i + 1] == 'X')
-		counter += ft_disp_xx(va_arg(*args, unsigned int));
-	if (s[i] == '%' && s[i + 1] == '%')
-	{
-		counter += 1;
-		write(1, "%", 1);
-	}
-	return (counter);
+	if (s == 'c')
+		return (ft_disp_char(va_arg(*args, int)));
+	if ((s == 'd' || s == 'i'))
+		return (ft_disp_int(va_arg(*args, int)));
+	if (s == 's')
+		return (ft_disp_string(va_arg(*args, char *)));
+	if (s == 'u')
+		return (ft_disp_unsigned(va_arg(*args, unsigned int)));
+	if (s == 'p')
+		return (ft_disp_pointer(va_arg(*args, void *)));
+	if (s == 'x')
+		return (ft_disp_x(va_arg(*args, unsigned int)));
+	if (s == 'X')
+		return (ft_disp_xx(va_arg(*args, unsigned int)));
+	if (s == '%')
+		return (write(1, "%%", 1));
+	return (0);
 }
 
 int	ft_printf(const char *s, ...)
@@ -54,11 +51,15 @@ int	ft_printf(const char *s, ...)
 	{
 		if (s[i] == '%')
 		{
-			count += check_cases((char *)s, &args, i);
-			i += 2;
+			count += check_cases(s[++i], &args);
+			i++;
 		}
-		write(1, s + i, 1);
-		i++;
+		else
+		{
+			write(1, &s[i], 1);
+			count++;
+			i++;
+		}
 	}
-	return (i);
+	return (count);
 }
