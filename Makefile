@@ -19,17 +19,17 @@ SRCS = ft_disp_char.c\
 		ft_disp_string.c\
 		ft_disp_unsigned.c\
 		ft_disp_x.c\
-		ft_disp_X.c\
+		ft_disp_xx.c\
 		ft_printf.c\
 		ft_putchar.c\
 		ft_putnbr.c\
-		ft_putstr.c
+		ft_putstr.c\
 
 OBJ = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -Iincludes
+CFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
@@ -38,6 +38,12 @@ $(NAME) : $(OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+EXEC = test
+
+$(EXEC): $(NAME) main.c
+	$(CC) $(CFLAGS) main.c $(NAME) -o $(EXEC)
+
 
 clean:
 	rm -f $(OBJ)

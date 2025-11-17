@@ -12,15 +12,14 @@
 
 #include "ft_printf.h"
 
-
 int	ft_disp_pointer(unsigned long long nbr)
 {
-	int counter;
+	int	counter;
 
 	counter = 0;
 	if (!nbr)
 		return (0);
 	counter += write(1, "0x", 2);
-	counter += ft_putnbr_x(nbr);
+	counter += ft_disp_x(nbr);
 	return (counter);
 }

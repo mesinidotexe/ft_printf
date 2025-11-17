@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putnbr_x(unsigned int nbr)
+int	ft_disp_x(unsigned int nbr)
 {
 	char	*base;
 	int		i;
@@ -22,7 +22,7 @@ int	ft_putnbr_x(unsigned int nbr)
 	base = "0123456789abcdef";
 	if (nbr >= 16)
 	{
-		ft_putnbr_x(nbr / 16);
+		ft_disp_x(nbr / 16);
 	}
 	value = base[nbr % 16];
 	i += write(1, &value, 1);
